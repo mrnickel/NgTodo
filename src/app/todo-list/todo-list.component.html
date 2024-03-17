@@ -1,0 +1,5 @@
+<div *ngFor="let todo of todos">
+    <app-todo [todo]="todo" (toggleComplete)="toggleComplete($event)"></app-todo>
+</div>
+
+<app-todo-form (addTodo)="addTodo($event)"></app-todo-form>

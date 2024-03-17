@@ -1,0 +1,9 @@
+<p>
+    <del *ngIf="todo?.complete">
+        {{todo?.title}}
+    </del>
+    <span *ngIf="!todo?.complete">
+        {{todo?.title}}
+    </span>
+    <button (click)="toggleComplete.emit(todo)">x</button>
+</p>
