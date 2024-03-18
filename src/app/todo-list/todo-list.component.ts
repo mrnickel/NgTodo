@@ -3,7 +3,11 @@ import { AsyncPipe, NgFor } from '@angular/common';
 import { TodoComponent } from '../todo/todo.component';
 import { Todo } from '../models/Todo';
 import { TodoFormComponent } from '../todo-form/todo-form.component';
-import { TodoService } from '../todo.service';
+import { Store } from '@ngrx/store';
+import { add, loadTodos, toggle } from '../actions/Todo.actions'
+import { Observable } from 'rxjs';
+import { selectAllTodos, selectTodoCount } from '../selectors/todo.selector';
+import { State } from '../reducers';
 
 @Component({
   selector: 'app-todo-list',
@@ -13,22 +17,23 @@ import { TodoService } from '../todo.service';
   styleUrl: './todo-list.component.css',
 })
 export class TodoListComponent implements OnInit {
-  todos: Todo[] = [];
-  constructor(private todoService: TodoService) {}
+  todos$: Observable<Todo[]>;
+  numTodos$: Observable<number>;
+
+  constructor(private store: Store<State>) {
+    this.todos$ = store.select(selectAllTodos);
+    this.numTodos$ = store.select(selectTodoCount)
+  }
 
   ngOnInit(): void {
-    this.todoService.todos$.subscribe((todos) => (this.todos = todos));
+    this.store.dispatch(loadTodos());
   }
 
   toggleComplete(todo: Todo) {
-    this.todoService.toggleComplete(todo);
+    this.store.dispatch(toggle({ id: todo.id }));
   }
 
   addTodo(newTodo: string) {
-    this.todoService.add({
-      id: Math.floor(Math.random() * 100),
-      title: newTodo,
-      complete: false,
-    });
+    this.store.dispatch(add({ todo: newTodo }));
   }
 }
