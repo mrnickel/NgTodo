@@ -1,0 +1,5 @@
+{
+    "image": "mcr.microsoft.com/devcontainers/javascript-node",
+    "postCreateCommand": "bash -i -c ./.devcontainer/postCreateCommand.sh",
+    "forwardPorts": [4200]
+}
