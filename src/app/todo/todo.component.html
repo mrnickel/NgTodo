@@ -1,0 +1,24 @@
+<div class="row justify-content-center">
+  <div class="col-12 col-sm-5">
+    <div class="form-check">
+      <input
+        class="form-check-input"
+        type="checkbox"
+        value=""
+        id="{{ todo?.id }}"
+        [checked]="todo?.complete"
+        (click)="toggleComplete.emit(todo)"
+      />
+
+      <label class="form-check-label" for="{{ todo?.id }}">
+        <del *ngIf="todo?.complete">
+          {{ todo?.title }}
+        </del>
+        <span *ngIf="!todo?.complete">
+          {{ todo?.title }}
+        </span>
+      </label>
+      <hr />
+    </div>
+  </div>
+</div>
