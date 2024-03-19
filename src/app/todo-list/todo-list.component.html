@@ -1,6 +1,11 @@
-<div *ngFor="let todo of todos$ | async">
-  <app-todo [todo]="todo" (toggleComplete)="toggleComplete($event)"></app-todo>
-</div>
+<mat-list>
+  <div *ngFor="let todo of todos$ | async">
+    <app-todo
+      [todo]="todo"
+      (toggleComplete)="toggleComplete($event)"
+    ></app-todo>
+  </div>
+</mat-list>
 
 <app-todo-form (addTodo)="addTodo($event)"></app-todo-form>
 
