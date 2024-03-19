@@ -8,14 +8,13 @@ import { add, loadTodos, toggle } from '../actions/Todo.actions'
 import { Observable } from 'rxjs';
 import { selectAllTodos, selectTodoCount } from '../selectors/todo.selector';
 import { State } from '../reducers';
-import { MatListModule } from '@angular/material/list';
 
 
 
 @Component({
   selector: 'app-todo-list',
   standalone: true,
-  imports: [NgFor, TodoComponent, TodoFormComponent, AsyncPipe, MatListModule],
+  imports: [NgFor, TodoComponent, TodoFormComponent, AsyncPipe],
   templateUrl: './todo-list.component.html',
   styleUrl: './todo-list.component.css',
 })
