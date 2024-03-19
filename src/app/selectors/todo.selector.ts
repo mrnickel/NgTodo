@@ -4,7 +4,6 @@ import { TodoState } from '../reducers/todo.reducer';
 
 
 export const selectTodos = (state: State) => {
-    console.log(state)
     return state.todos;
 };
 

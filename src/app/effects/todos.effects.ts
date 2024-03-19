@@ -12,7 +12,6 @@ export class TodosEffects {
     loadTodos$ = createEffect(() => this.actions$.pipe(
         ofType(loadTodos),
         map(() => {
-            console.log('somethinga')
             return JSON.parse(localStorage.getItem('items') || '[]')
         }),
         map((todos) => {
