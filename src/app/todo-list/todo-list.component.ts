@@ -32,7 +32,7 @@ export class TodoListComponent implements OnInit {
   }
 
   toggleComplete(todo: Todo) {
-    console.log('toggle', todo)
+    console.log('toggle', todo);
     this.store.dispatch(toggle({ id: todo.id }));
   }
 
@@ -41,7 +41,7 @@ export class TodoListComponent implements OnInit {
   }
 
   deleteTodo1(id: number) {
-    console.log(id);
+    console.log('delete', id)
     this.store.dispatch(deleteTodo({ id }))
   }
 }

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { EMPTY, Observable } from 'rxjs';
 import { map, catchError, withLatestFrom } from 'rxjs/operators';
-import { add, loadTodos, setTodos, todoCreated, todoDeleted, todoToggled, toggle } from '../actions/Todo.actions';
+import { add, deleteTodo, loadTodos, setTodos, todoCreated, todoDeleted, todoToggled, toggle } from '../actions/Todo.actions';
 import { Store } from '@ngrx/store';
 import { State } from '../reducers';
 
@@ -59,7 +59,7 @@ export class TodosEffects {
 
 
     deleteTodo$ = createEffect(() => this.actions$.pipe(
-        ofType(toggle),
+        ofType(deleteTodo),
         withLatestFrom(this.store.select((state: State) => state.todos.todos)),
         map(([{ id }, todos]) => {
             const filteredTodos = todos.filter(x => {
