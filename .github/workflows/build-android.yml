@@ -26,6 +26,7 @@ jobs:
         run: |
           npm install
           npm run build
+          npx cap sync
       - name: set up JDK 1.8
         uses: actions/setup-java@v1
         with:
@@ -33,7 +34,9 @@ jobs:
       - name: Make gradlew executable
         run: chmod +x ./android/gradlew
       - name: build prod
-        run: ./android/gradlew app:bundleRelease
+        run: |
+          cd ./android
+          ./gradlew app:bundleRelease
         env:
           SIGNING_KEY_ALIAS: ${{ secrets.SIGNING_KEY_ALIAS }}
           SIGNING_KEY_PASSWORD: ${{ secrets.SIGNING_KEY_PASSWORD }}
