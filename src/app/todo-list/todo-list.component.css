@@ -1,3 +1,12 @@
 .beneath-header {
     top: 4em;
 }
+.something {
+    font-size: 15px;
+}
+
+@media screen and (min-width: 575px) {
+    .something { 
+        font-size: 28px;
+    }
+}
