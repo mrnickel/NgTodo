@@ -18,6 +18,7 @@
           {{ todo?.title }}
         </span>
       </label>
+      <button type="button" (click)="deleteTodo.emit(todo?.id!)">Delete</button>
       <hr />
     </div>
   </div>

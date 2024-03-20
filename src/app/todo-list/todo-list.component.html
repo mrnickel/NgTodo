@@ -11,5 +11,6 @@
     *ngFor="let todo of todos$ | async"
     [todo]="todo"
     (toggleComplete)="toggleComplete($event)"
+    (deleteTodo)="deleteTodo1($event)"
   ></app-todo>
 </div>

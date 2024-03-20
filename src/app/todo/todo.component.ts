@@ -12,4 +12,6 @@ import { NgIf } from '@angular/common';
 export class TodoComponent {
   @Input() todo: Todo | undefined;
   @Output() toggleComplete = new EventEmitter();
+  @Output() deleteTodo = new EventEmitter();
+
 }

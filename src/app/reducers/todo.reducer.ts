@@ -1,5 +1,5 @@
 import { ActionReducer, createReducer, on } from '@ngrx/store';
-import { setTodos, todoCreated, todoToggled } from '../actions/Todo.actions';
+import { deleteTodo, setTodos, todoCreated, todoDeleted, todoToggled } from '../actions/Todo.actions';
 import { Todo } from '../models/Todo';
 
 // TODO: Update to normalize data
@@ -41,4 +41,14 @@ export const todoReducer: ActionReducer<TodoState> = createReducer(
             todos: [...mappedTodos]
         }
     }),
+    on(todoDeleted, (state, { id }) => {
+        const filteredTodos = state.todos.filter((x) => {
+            return x.id !== id
+        })
+
+        return {
+            ...state,
+            todos: [...filteredTodos]
+        }
+    })
 );

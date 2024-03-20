@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { EMPTY, Observable } from 'rxjs';
 import { map, catchError, withLatestFrom } from 'rxjs/operators';
-import { add, loadTodos, setTodos, todoCreated, todoToggled, toggle } from '../actions/Todo.actions';
+import { add, loadTodos, setTodos, todoCreated, todoDeleted, todoToggled, toggle } from '../actions/Todo.actions';
 import { Store } from '@ngrx/store';
 import { State } from '../reducers';
 
@@ -54,6 +54,20 @@ export class TodosEffects {
             const mappedTodo = todos.find(x => x.id === id);
             localStorage.setItem('items', JSON.stringify(mappedTodos));
             return todoToggled({ todo: mappedTodo! });
+        })
+    ));
+
+
+    deleteTodo$ = createEffect(() => this.actions$.pipe(
+        ofType(toggle),
+        withLatestFrom(this.store.select((state: State) => state.todos.todos)),
+        map(([{ id }, todos]) => {
+            const filteredTodos = todos.filter(x => {
+                return x.id !== id;
+            })
+
+            localStorage.setItem('items', JSON.stringify(filteredTodos));
+            return todoDeleted({ id });
         })
     ));
 
