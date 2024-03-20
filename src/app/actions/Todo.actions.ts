@@ -9,3 +9,5 @@ export const setTodos = createAction('[Todo Component] setTodos', props<{ todos:
 export const loadTodos = createAction('[Todo Component] loadTodos');
 export const deleteTodo = createAction('[Todo Component] delete', props<{ id: number }>());
 export const todoDeleted = createAction('[Todo Component] todo delete', props<{ id: number }>());
+export const updateTodo = createAction('[Todo toggled] todo update', props<{ id: number, title: string }>())
+export const todoUpdated = createAction('[Todo toggled] todo updated', props<{ todo: Todo }>())

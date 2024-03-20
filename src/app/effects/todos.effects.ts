@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { EMPTY, Observable } from 'rxjs';
 import { map, catchError, withLatestFrom } from 'rxjs/operators';
-import { add, deleteTodo, loadTodos, setTodos, todoCreated, todoDeleted, todoToggled, toggle } from '../actions/Todo.actions';
+import { add, deleteTodo, loadTodos, setTodos, todoCreated, todoDeleted, todoToggled, todoUpdated, toggle, updateTodo } from '../actions/Todo.actions';
 import { Store } from '@ngrx/store';
 import { State } from '../reducers';
 
@@ -57,7 +57,6 @@ export class TodosEffects {
         })
     ));
 
-
     deleteTodo$ = createEffect(() => this.actions$.pipe(
         ofType(deleteTodo),
         withLatestFrom(this.store.select((state: State) => state.todos.todos)),
@@ -68,6 +67,26 @@ export class TodosEffects {
 
             localStorage.setItem('items', JSON.stringify(filteredTodos));
             return todoDeleted({ id });
+        })
+    ));
+
+    updateTodo$ = createEffect(() => this.actions$.pipe(
+        ofType(updateTodo),
+        withLatestFrom(this.store.select((state: State) => state.todos.todos)),
+        map(([{ id, title }, todos]) => {
+            const mappedTodos = todos.map((x) => {
+                if (x.id === id) {
+                    return {
+                        ...x,
+                        title,
+                    };
+                }
+                return x;
+            });
+
+            const updatedTodo = mappedTodos.find(x => x.id === id);
+            localStorage.setItem('items', JSON.stringify(mappedTodos));
+            return todoUpdated({ todo: updatedTodo! });
         })
     ));
 

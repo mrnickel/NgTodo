@@ -1,24 +1,36 @@
 <div class="row justify-content-center">
   <div class="col-12 col-sm-5">
     <div class="form-check">
-      <input
-        class="form-check-input"
-        type="checkbox"
-        value=""
-        id="{{ todo?.id }}"
-        [checked]="todo?.complete"
-        (click)="toggleComplete.emit(todo)"
-      />
+      <span *ngIf="!isEditing">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          value=""
+          id="{{ todo?.id }}"
+          [checked]="todo?.complete"
+          (click)="toggleComplete.emit(todo)"
+        />
 
-      <label class="form-check-label" for="{{ todo?.id }}">
-        <del *ngIf="todo?.complete">
-          {{ todo?.title }}
-        </del>
-        <span *ngIf="!todo?.complete">
-          {{ todo?.title }}
-        </span>
-      </label>
+        <label class="form-check-label" for="{{ todo?.id }}">
+          <del *ngIf="todo?.complete">
+            {{ todo?.title }}
+          </del>
+          <span *ngIf="!todo?.complete">
+            {{ todo?.title }}
+          </span>
+        </label>
+        <button type="button" (click)="setIsEditing(true)">Edit</button>
+      </span>
+      <input
+        *ngIf="isEditing"
+        value="{{ todo?.title }}"
+        id="{{ todo?.id }}"
+        [(ngModel)]="updatedText"
+      />
       <button type="button" (click)="deleteTodo.emit(todo?.id!)">Delete</button>
+      <button *ngIf="isEditing" type="button" (click)="saveChanges()">
+        Save
+      </button>
       <hr />
     </div>
   </div>
