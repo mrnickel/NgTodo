@@ -1,7 +1,7 @@
 <div class="row justify-content-center">
   <div class="col-12 col-sm-5">
-    <div class="form-check">
-      <span *ngIf="!isEditing">
+    <div class="d-flex justify-content-between align-items-center">
+      <div class="form-check" *ngIf="!isEditing">
         <input
           class="form-check-input"
           type="checkbox"
@@ -19,19 +19,42 @@
             {{ todo?.title }}
           </span>
         </label>
-        <button type="button" (click)="setIsEditing(true)">Edit</button>
-      </span>
+      </div>
       <input
+        class="form-control"
         *ngIf="isEditing"
         value="{{ todo?.title }}"
         id="{{ todo?.id }}"
         [(ngModel)]="updatedText"
       />
-      <button type="button" (click)="deleteTodo.emit(todo?.id!)">Delete</button>
-      <button *ngIf="isEditing" type="button" (click)="saveChanges()">
-        Save
-      </button>
-      <hr />
+      <span>
+        <button
+          *ngIf="isEditing"
+          class="btn btn-outline-success ms-3"
+          type="button"
+          (click)="saveChanges()"
+        >
+          <i class="bi bi-floppy"></i>
+        </button>
+        <span *ngIf="!isEditing">
+          <button
+            type="button"
+            class="btn btn-outline-secondary"
+            (click)="setIsEditing(true)"
+          >
+            <i class="bi bi-pencil"></i>
+          </button>
+
+          <button
+            type="button"
+            class="btn btn-outline-danger ms-3"
+            (click)="deleteTodo.emit(todo?.id!)"
+          >
+            <i class="bi bi-trash"></i>
+          </button>
+        </span>
+      </span>
     </div>
+    <hr />
   </div>
 </div>
