@@ -1,0 +1,19 @@
+{
+  "name": "@mrnickel/poc-library-test",
+  "version": "1.0.0",
+  "description": "Playing with github container packages",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Ryan Nickel",
+  "license": "ISC",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mrnickel/NgTodo.git"
+  }
+}

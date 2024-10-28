@@ -1,22 +1,39 @@
 PODS:
-  - Capacitor (5.7.3):
+  - Alamofire (5.9.1)
+  - Capacitor (6.0.0):
     - CapacitorCordova
-  - CapacitorCordova (5.7.3)
+  - CapacitorCordova (6.0.0)
+  - CapawesomeCapacitorLiveUpdate (6.0.8):
+    - Alamofire (~> 5.9.0)
+    - Capacitor
+    - SSZipArchive (~> 2.2)
+  - SSZipArchive (2.4.3)
 
 DEPENDENCIES:
   - "Capacitor (from `../../node_modules/@capacitor/ios`)"
   - "CapacitorCordova (from `../../node_modules/@capacitor/ios`)"
+  - "CapawesomeCapacitorLiveUpdate (from `../../node_modules/@capawesome/capacitor-live-update`)"
+
+SPEC REPOS:
+  trunk:
+    - Alamofire
+    - SSZipArchive
 
 EXTERNAL SOURCES:
   Capacitor:
     :path: "../../node_modules/@capacitor/ios"
   CapacitorCordova:
     :path: "../../node_modules/@capacitor/ios"
+  CapawesomeCapacitorLiveUpdate:
+    :path: "../../node_modules/@capawesome/capacitor-live-update"
 
 SPEC CHECKSUMS:
-  Capacitor: 7b5eb47c6125e9b58a3e3cd02fe366fc58adc89c
-  CapacitorCordova: a377c52a28dbb3b895c0f71187f7b1777fee69db
+  Alamofire: f36a35757af4587d8e4f4bfa223ad10be2422b8c
+  Capacitor: 559d073c4ca6c27f8e7002c807eea94c3ba435a9
+  CapacitorCordova: 8c4bfdf69368512e85b1d8b724dd7546abeb30af
+  CapawesomeCapacitorLiveUpdate: 8903aa7db139cea19870d53208f4b5c6ee1ba7bc
+  SSZipArchive: fe6a26b2a54d5a0890f2567b5cc6de5caa600aef
 
-PODFILE CHECKSUM: 8ab55909c5de2b217f9841e5e5b329f5ec901553
+PODFILE CHECKSUM: 2ef6ed0ca3a7b1795ea2ac80224c8373e6669070
 
 COCOAPODS: 1.15.2

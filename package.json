@@ -1,13 +1,16 @@
 {
   "name": "ng-todo",
-  "version": "0.0.0",
+  "version": "0.0.17",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
+    "start": "ng serve --configuration=development --host=0.0.0.0",
+    "build": "ng build --configuration=production && npm run package",
+    "package": "zip -r ./staticfiles/$(npm pkg get version | tr -d '\"').zip ./dist/ng-todo/browser",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "deploy": "ng build --configuration production --base-href=/NgTodo/"
+    "deploy": "ng build --configuration production --base-href=/NgTodo/",
+    "setup": "nvm use && npm install",
+    "startLiveUpdate": "npx http-server ./ --cors -a 0.0.0.0 -c-1"
   },
   "private": true,
   "dependencies": {
@@ -20,10 +23,12 @@
     "@angular/platform-browser": "^17.3.0",
     "@angular/platform-browser-dynamic": "^17.3.0",
     "@angular/router": "^17.3.0",
-    "@capacitor/android": "^5.7.3",
+    "@capacitor/android": "^6.0.0",
     "@capacitor/angular": "^2.0.3",
-    "@capacitor/core": "^5.7.3",
-    "@capacitor/ios": "^5.7.3",
+    "@capacitor/core": "^6.0.0",
+    "@capacitor/ios": "^6.0.0",
+    "@capawesome/capacitor-live-update": "^6.0.8",
+    "@mrnickel/poc-library-test": "^1.0.0",
     "@ngrx/effects": "^17.1.1",
     "@ngrx/entity": "^17.1.1",
     "@ngrx/store": "^17.1.1",
@@ -32,6 +37,7 @@
     "bootstrap": "^5.3.2",
     "bootstrap-icons": "^1.11.3",
     "rxjs": "~7.8.0",
+    "semver": "^7.6.2",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.3"
   },
@@ -40,8 +46,9 @@
     "@angular/cli": "^17.3.0",
     "@angular/compiler-cli": "^17.3.0",
     "@angular/localize": "^17.3.0",
-    "@capacitor/cli": "latest",
+    "@capacitor/cli": "6.0.0",
     "@types/jasmine": "~5.1.0",
+    "@types/semver": "^7.5.8",
     "jasmine-core": "~5.1.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.2.0",
@@ -49,5 +56,9 @@
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
     "typescript": "~5.4.2"
+  },
+  "volta": {
+    "node": "20.12.2",
+    "npm": "10.7.0"
   }
 }

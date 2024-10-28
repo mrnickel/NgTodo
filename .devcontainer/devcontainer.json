@@ -1,5 +1,19 @@
 {
-    "image": "mcr.microsoft.com/devcontainers/javascript-node",
-    "postCreateCommand": "bash -i -c ./.devcontainer/postCreateCommand.sh",
-    "forwardPorts": [4200]
+  "image": "ghcr.io/mrnickel/angulardockerstuff:ng20",
+  "postCreateCommand": "",
+  "features": {},
+  "appPort": "4200:4200",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "Angular.ng-template",
+        "firsttris.vscode-jest-runner",
+        "streetsidesoftware.code-spell-checker",
+        "esbenp.prettier-vscode",
+        "dbaeumer.vscode-eslint",
+        "infinity1207.angular2-switcher",
+        "segerdekort.angular-cli"
+      ]
+    }
+  }
 }

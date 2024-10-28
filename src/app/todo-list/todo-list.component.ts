@@ -7,8 +7,9 @@ import { Store } from '@ngrx/store';
 import { add, deleteTodo, loadTodos, toggle } from '../actions/Todo.actions'
 import { Observable } from 'rxjs';
 import { selectAllTodos, selectTodoCount } from '../selectors/todo.selector';
-import { State } from '../reducers';
-
+import { State } from '../reducers'
+//@ts-ignore
+import  lengthOfString from '@mrnickel/poc-library-test'
 
 
 @Component({
@@ -25,6 +26,7 @@ export class TodoListComponent implements OnInit {
   constructor(private store: Store<State>) {
     this.todos$ = store.select(selectAllTodos);
     this.numTodos$ = store.select(selectTodoCount)
+    console.log('lengthOfString', lengthOfString('hello'))
   }
 
   ngOnInit(): void {

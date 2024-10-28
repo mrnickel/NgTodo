@@ -1,9 +1,9 @@
 <div class="container-fluid">
-  <div class="sticky-top beneath-header mb-4">
+  <div class="beneath-header mb-4">
     <app-todo-form (addTodo)="addTodo($event)"></app-todo-form>
     <div class="row justify-content-center">
       <div class="col-12 col-sm-5 something">
-        <span>You have {{ numTodos$ | async }} todos to do</span>
+        <span>You have {{ numTodos$ | async }} todos to do. </span>
       </div>
     </div>
   </div>
